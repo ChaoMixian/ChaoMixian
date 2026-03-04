@@ -1,0 +1,120 @@
+name: Update README cards
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate stats card (dark)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&show_icons=true&hide_border=true&include_all_commits=true&rank_icon=percentile&theme=github_dark
+          path: profile/stats_dark.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate stats card (light)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&show_icons=true&hide_border=true&include_all_commits=true&rank_icon=percentile&theme=default
+          path: profile/stats_light.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate top languages card (dark)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: top-langs
+          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&hide_border=true&theme=github_dark
+          path: profile/top-langs_dark.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate top languages card (light)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: top-langs
+          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&hide_border=true&theme=default
+          path: profile/top-langs_light.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # vFlow
+      - name: Generate vFlow card (dark)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: pin
+          options: username=${{ github.repository_owner }}&repo=vFlow&hide_border=true&theme=github_dark
+          path: profile/pinned-vflow_dark.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate vFlow card (light)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: pin
+          options: username=${{ github.repository_owner }}&repo=vFlow&hide_border=true&theme=default
+          path: profile/pinned-vflow_light.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # FakeSystemVersion
+      - name: Generate FakeSystemVersion card (dark)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: pin
+          options: username=${{ github.repository_owner }}&repo=FakeSystemVersion&hide_border=true&theme=github_dark
+          path: profile/pinned-fakesystemversion_dark.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate FakeSystemVersion card (light)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: pin
+          options: username=${{ github.repository_owner }}&repo=FakeSystemVersion&hide_border=true&theme=default
+          path: profile/pinned-fakesystemversion_light.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # onanistic_coffeine
+      - name: Generate onanistic_coffeine card (dark)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: pin
+          options: username=${{ github.repository_owner }}&repo=onanistic_coffeine&hide_border=true&theme=github_dark
+          path: profile/pinned-onanistic-coffeine_dark.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate onanistic_coffeine card (light)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: pin
+          options: username=${{ github.repository_owner }}&repo=onanistic_coffeine&hide_border=true&theme=default
+          path: profile/pinned-onanistic-coffeine_light.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ZhihuishuDownloader
+      - name: Generate ZhihuishuDownloader card (dark)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: pin
+          options: username=${{ github.repository_owner }}&repo=ZhihuishuDownloader&hide_border=true&theme=github_dark
+          path: profile/pinned-zhihuishudownloader_dark.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate ZhihuishuDownloader card (light)
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: pin
+          options: username=${{ github.repository_owner }}&repo=ZhihuishuDownloader&hide_border=true&theme=default
+          path: profile/pinned-zhihuishudownloader_light.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit cards
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add profile/*.svg
+          git commit -m "Update README cards" || exit 0
+          git push
