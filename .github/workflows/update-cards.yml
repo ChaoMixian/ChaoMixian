@@ -31,7 +31,7 @@ jobs:
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: top-langs
-          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&hide_border=true&theme=github_dark
+          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&hide_border=true&exclude_repo=chaomixian.github.io&theme=github_dark
           path: profile/top-langs_dark.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -39,7 +39,7 @@ jobs:
         uses: readme-tools/github-readme-stats-action@v1
         with:
           card: top-langs
-          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&hide_border=true&theme=default
+          options: username=${{ github.repository_owner }}&layout=compact&langs_count=6&hide_border=true&exclude_repo=chaomixian.github.io&theme=default
           path: profile/top-langs_light.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
